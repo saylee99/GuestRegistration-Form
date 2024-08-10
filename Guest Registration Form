@@ -1,0 +1,63 @@
+package Selenium;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class registrationForm {
+	public static void main(String[] args) {
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://demo.wpeverest.com/user-registration/guest-registration-form/");
+		driver.manage().window().maximize();
+		driver.findElement(By.id("first_name")).sendKeys("Alen");
+		driver.findElement(By.id("last_name")).sendKeys("Denasta");
+		driver.findElement(By.id("user_email")).sendKeys("AlenDZ@yahoo.com");
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.findElement(By.id("user_pass")).sendKeys("ABCxyz@12345");
+		driver.findElement(By.id("radio_1665627729_Female")).click();
+		
+		JavascriptExecutor scrolldown4= (JavascriptExecutor)driver;
+		scrolldown4.executeScript("window.scrollBy(0,500)");
+		
+		/*Select s1=new Select(driver.findElement(By.xpath("//span[@aria-label='July 5, 1999']")));
+		s1.selectByValue("July 5, 1999");  */
+		
+	  driver.findElement(By.id("input_box_1665629217")).sendKeys("Indian");
+	
+	  JavascriptExecutor scrolldown= (JavascriptExecutor)driver;
+	  scrolldown.executeScript("window.scrollBy(0,500)");
+		driver.findElement(By.xpath("//input[@id='phone_1665627880']")).sendKeys("(122) 222-2222");
+	
+	  Select s2=new Select(driver.findElement(By.xpath("//select[@id='country_1665629257']")));
+	  s2.selectByVisibleText("India");
+	
+	  driver.findElement(By.xpath("//input[@id='phone_1665627865']")).sendKeys("(111) 111-1111");
+	
+	  /*Select s3=new Select(driver.findElement(By.xpath("//span[@aria-label='August 10, 2024']")));
+	  s3.selectByVisibleText("August 10, 2024"); */
+
+	  driver.findElement(By.id("number_box_1665629930")).sendKeys("3");
+	  JavascriptExecutor scroll= (JavascriptExecutor)driver;
+	  scroll.executeScript("window.scrollBy(0,500)");
+
+	  driver.findElement(By.id("input_box_1665630010")).sendKeys("00002");
+	  driver.findElement(By.xpath("//textarea[@id='textarea_1665630078']")).sendKeys("Software Tester in private company");
+	  JavascriptExecutor scrolldown1= (JavascriptExecutor)driver;
+	  scrolldown1.executeScript("window.scrollBy(0,200)");
+	  driver.findElement(By.id("radio_1665627931_Yes")).click();
+	  driver.findElement(By.id("radio_1665627997_Single Room")).click();
+	  driver.findElement(By.id("radio_1665628131_None")).click();
+		Select s4=new Select(driver.findElement(By.xpath("//select[@id='select_1665628361']")));
+	  s4.selectByVisibleText("Town Hall");
+	  driver.findElement(By.xpath("//input[@id='privacy_policy_1665633140']")).click();
+	  driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
+	  String s=driver.findElement(By.xpath("//ul[normalize-space()='User successfully registered.']")).getText();
+	  System.out.println(s);
+	  driver.close();
+	}
+}
